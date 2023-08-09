@@ -4,9 +4,9 @@
 #include<time.h>
 #define N 5
 int num=0,q=0;
-char m;//×÷±×Âë(¼ÓËÙ)
+char m;//ä½œå¼Šç (åŠ é€Ÿ)
 int a[50][50];
-//µØÍ¼
+//åœ°å›¾
 void showmap(void) {
 	for(int i=0; i<50; i++) {
 		for(int k=0; k<50; k++) {
@@ -19,10 +19,10 @@ void showmap(void) {
 		}
 		printf("\n");
 	}
-}//µØÍ¼µÄ»æÖÆ
+}//åœ°å›¾çš„ç»˜åˆ¶
 enum direction {
 	up,down,left,right
-};//·½ÏòµÄÃ¶¾ÙÀàĞÍ¶¨Òå
+};//æ–¹å‘çš„æšä¸¾ç±»å‹å®šä¹‰
 void setPos(int x, int y) {
 	if(x<0) x=0;
 	if(y<0) y=0;
@@ -31,19 +31,19 @@ void setPos(int x, int y) {
 	pos.X=(short)x;
 	pos.Y=(short)y;
 	SetConsoleCursorPosition(output,pos);
-}//¹â±êº¯Êı
+}//å…‰æ ‡å‡½æ•°
 struct Snack {
-	enum direction dir;//ÉßµÄÇ°½ø·½Ïò
+	enum direction dir;//è›‡çš„å‰è¿›æ–¹å‘
 	COORD pos;
-	int lengh;//´æ´¢Éß//¸ü¶àÏ¸½Ú
+	int lengh;//å­˜å‚¨è›‡//æ›´å¤šç»†èŠ‚
 };
-struct Snack snack;//Éß½á¹¹Ìå
+struct Snack snack;//è›‡ç»“æ„ä½“
 void getdir(void) {
 	if( (GetAsyncKeyState(VK_UP) & 1) == 1 ) {
 		if(snack.dir==down) {
 			goto op;
 		}
-		snack.dir=up;// ÏòÉÏ¼ü±»°´ÏÂ¹ı
+		snack.dir=up;// å‘ä¸Šé”®è¢«æŒ‰ä¸‹è¿‡
 	} else if((GetAsyncKeyState(VK_DOWN) & 1) == 1 ) {
 		if(snack.dir==up) {
 			goto op;
@@ -86,9 +86,9 @@ op:/*
 		snack.pos.X=snack.pos.X-1;
 	}
 	setPos(0,0);
-}//½ÓÊÜ·½Ïò²¢ÔË¶¯
+}//æ¥å—æ–¹å‘å¹¶è¿åŠ¨
 int movesnack(void) {
-	if(a[snack.pos.Y][snack.pos.X]==1) {//ÔÚÊı×éÖĞx,y·´¹ıÀ´
+	if(a[snack.pos.Y][snack.pos.X]==1) {//åœ¨æ•°ç»„ä¸­x,yåè¿‡æ¥
 		return 1;
 	} else if(a[snack.pos.Y][snack.pos.X]==0) {
 		setPos(snack.pos.X,snack.pos.Y);
@@ -102,7 +102,7 @@ int movesnack(void) {
 		return 1;
 	}
 
-}//×²Ç½ÅĞ¶¨
+}//æ’å¢™åˆ¤å®š
 void food(void) {
 	int x,y;
 su:
@@ -117,25 +117,25 @@ su:
 	}
 }
 void goal(void) {
-	setPos(0,0);//Ê¹µÃ¹â±êÒÆµ½(0,0)¶ø·ÇµÃ·ÖÇ°
+	setPos(0,0);//ä½¿å¾—å…‰æ ‡ç§»åˆ°(0,0)è€Œéå¾—åˆ†å‰
 	setPos(0,50);
-	printf("µÃ·ÖÎª:%d",num);
+	printf("å¾—åˆ†ä¸º:%d",num);
 }
 
 int main() {
-	/*printf("Ì°³ÔÉß1.0Î´Íê³É°æ");
+	/*printf("è´ªåƒè›‡1.0æœªå®Œæˆç‰ˆ");
 	Sleep(1000);
 	system("cls");*/
-	printf("Ì°³ÔÉß2.0Íê³É°æ");
+	printf("è´ªåƒè›‡2.0å®Œæˆç‰ˆ");
 	Sleep(1000);
 	system("cls");
 s:
 	FILE *fp1,*fp2,*fp3;
-	fp1=fopen("D:\\ÎÄ¼ş\\´úÂë\\dev c++\\map 1.txt","r");
-	fp2=fopen("D:\\ÎÄ¼ş\\´úÂë\\dev c++\\map 2.txt","r");
-	fp3=fopen("D:\\ÎÄ¼ş\\´úÂë\\dev c++\\map 3.txt","r");
+	fp1=fopen("D:\\æ–‡ä»¶\\ä»£ç \\dev c++\\map 1.txt","r");
+	fp2=fopen("D:\\æ–‡ä»¶\\ä»£ç \\dev c++\\map 2.txt","r");
+	fp3=fopen("D:\\æ–‡ä»¶\\ä»£ç \\dev c++\\map 3.txt","r");
 	int elo=0;
-	printf("ÇëÑ¡ÔñµØÍ¼:\n");
+	printf("è¯·é€‰æ‹©åœ°å›¾:\n");
 	scanf("%d",&elo);
 	if(elo==1) {
 		for(int i=0; i<50; i++) {
@@ -157,7 +157,7 @@ s:
 		}
 	}
 	int n=0,p=0;
-	printf("ÇëÑ¡ÔñÄÑ¶È:\n1.¼òµ¥\n2.ÖĞµÈ\n3.À§ÄÑ\n");
+	printf("è¯·é€‰æ‹©éš¾åº¦:\n1.ç®€å•\n2.ä¸­ç­‰\n3.å›°éš¾\n");
 	scanf("%d",&n);
 	if(n==1) {
 		q=500;
@@ -223,7 +223,7 @@ su:
 					}
 				}
 			}
-		}//¸ß¶î½±Àø(Ëæ»úÏûÊ§)
+		}//é«˜é¢å¥–åŠ±(éšæœºæ¶ˆå¤±)
 		int saw=0;
 		for(int i=0; i<50; i++) {
 			for(int j=0; j<50; j++) {
@@ -257,7 +257,7 @@ jia:
 					}
 				}
 			}
-		}//¸ß¶î½±Àø(¶¨Ê±ÏûÊ§)
+		}//é«˜é¢å¥–åŠ±(å®šæ—¶æ¶ˆå¤±)
 		if(num%3==0&&(GetAsyncKeyState(VK_DELETE)&1)==1) {
 			for(int i=0; i<50; i++) {
 				for(int k=0; k<50; k++) {
@@ -269,11 +269,11 @@ jia:
 					}
 				}
 			}
-		}//ÔÚµÃ·ÖÎª3µÄ±¶ÊıÊ±°´ÏÂdelete¼üÉßÉíÌå±äÎª^ĞÍ
+		}//åœ¨å¾—åˆ†ä¸º3çš„å€æ•°æ—¶æŒ‰ä¸‹deleteé”®è›‡èº«ä½“å˜ä¸º^å‹
 		if((GetAsyncKeyState(VK_MENU)&1)==1) {
-			p=(int)(q/4);//°´ÏÂalt¼ü¼ÓËÙ4±¶
+			p=(int)(q/4);//æŒ‰ä¸‹alté”®åŠ é€Ÿ4å€
 		} else if((GetAsyncKeyState(VK_SPACE)&1)==1) {
-			p=(int)(q/10);//°´ÏÂ¿Õ¸ñ¼ü¼ÓËÙ10±¶
+			p=(int)(q/10);//æŒ‰ä¸‹ç©ºæ ¼é”®åŠ é€Ÿ10å€
 		} else {
 			p=q;
 		}
@@ -294,15 +294,15 @@ jia:
 		}
 		if(sub>100) {
 			system("cls");
-			printf("Ë¬²»Ë¬£¬¾Í²»ÈÃÄãÓ®£¬¹ş¹ş¹ş\nGame over!");
+			printf("çˆ½ä¸çˆ½ï¼Œå°±ä¸è®©ä½ èµ¢ï¼Œå“ˆå“ˆå“ˆ\nGame over!");
 			return 0;
 		}
-		goal();//µÃ·Ö
+		goal();//å¾—åˆ†
 		setPos(0,0);
 		setPos(0,51);
 		printf("%d",(int)clock());
 		setPos(0,0);
-		getdir();//ÔË¶¯
+		getdir();//è¿åŠ¨
 		/*for(int i=0; i<50; i++) {
 			for(int k=0; k<50; k++) {
 				if(a[i][k]==2) {
@@ -340,7 +340,7 @@ jia:
 				return 0;
 			}
 			return 0;
-		}//½áÊøÅĞ¶¨
+		}//ç»“æŸåˆ¤å®š
 		else if(movesnack()==0) {
 			a[snack.pos.Y][snack.pos.X]=2+snack.lengh;
 			setPos(0,0);
